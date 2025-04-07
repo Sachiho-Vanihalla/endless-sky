@@ -108,6 +108,7 @@ shipyard "Northern Pirates"
 	"Firebird"
 	"Headhunter"
 	"Scrapper"
+	"Modified Arrow"
 
 shipyard "Advanced Northern Pirates"
 	"Aerie"

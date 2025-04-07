@@ -2787,7 +2787,62 @@ ship "Modified Argosy"
 	"final explode" "final explosion medium"
 	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
 
+ship "Modified Arrow"
+	sprite "ship/modifiedarrow"
+	thumbnail "thumbnail/modifiedarrow"
+	attributes
+		category "Light Freighter"
+		"cost" 1200000
+		"shields" 2000
+		"hull" 200
+		"required crew" 1
+		"bunks" 2
+		"mass" 140
+		"drag" 2.4
+		"heat dissipation" .70
+		"fuel capacity" 800
+		"ramscoop" 1
+		"cargo space" 70
+		"outfit space" 180
+		"weapon capacity" 50
+		"engine capacity" 75
+		weapon
+			"blast radius" 24
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
+	outfits
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 12
+		"Anti-Missile Turret"
+		
+		"Dwarf Core"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
+		"Cooling Ducts"
+		"Interference Plating" 2
+		
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Capybara Reverse Thruster"
+		"Hyperdrive"
+		
+	engine -8 59
+	engine 8 59
+	gun -7.5 -51 "Sidewinder Missile Pod"
+		under
+	gun 7.5 -51 "Sidewinder Missile Pod"
+		under
+	turret 0 17.5 "Anti-Missile Turret"
+	leak "leak" 80 50
+	explode "tiny explosion" 12
+	explode "small explosion" 18
+	explode "medium explosion" 6
+	"final explode" "final explosion small"
+	description "While the original Arrow is an expression of ostentatious wealth and comfort, this refitted version is a near polar opposite. It sacrifices every possible luxury for extra fuel, in-built ramscoop, and most notably a large cargo hold where the grand suite and bar used to be. This incredibly swift cargo ship is often found in the hands of smugglers, using the incredible speed to weave past system patrols."
 
+	description "	All of this modification comes at a cost. Not just compromised hull integrity, but living conditions that make the Boxwing look like the Paradise Worlds. The Modified Arrow is one of the only ships in space to feature a multi-purpose room that can be a toilet, shower, and kitchen. These tight quarters leave only enough space for the captain up front, and a tiny bunk crammed in the back of the ship for the gunner."
 
 ship "Mule"
 	sprite "ship/mule"
