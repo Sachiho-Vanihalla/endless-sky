@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
+#include "Paragraphs.h"
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -51,6 +53,7 @@ class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 
@@ -148,10 +151,10 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
+	Ship(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
@@ -179,7 +182,7 @@ public:
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
-	const std::string &Description() const;
+	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
@@ -311,7 +314,8 @@ public:
 	// Check if this ship is allowed to enter this system, accounting for its personality.
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
+	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -535,7 +539,7 @@ public:
 	void Linger();
 
 	// Check if this ship looks the same as another, based on model display names and outfits.
-	bool Immitates(const Ship &other) const;
+	bool Imitates(const Ship &other) const;
 
 
 private:
@@ -606,7 +610,7 @@ private:
 	std::string variantName;
 	std::string variantMapShopName;
 	std::string noun;
-	std::string description;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
@@ -633,7 +637,8 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	const Swizzle *customSwizzle = nullptr;
+	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
